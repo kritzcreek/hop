@@ -195,8 +195,9 @@ pub struct Descriptor {
 }
 /// Nested message and enum types in `Descriptor`.
 pub mod descriptor {
-    #[derive(serde::Serialize, serde::Deserialize)]
     #[derive(
+        serde::Serialize,
+        serde::Deserialize,
         Clone,
         Copy,
         Debug,
@@ -205,7 +206,7 @@ pub mod descriptor {
         Hash,
         PartialOrd,
         Ord,
-        ::prost::Enumeration
+        ::prost::Enumeration,
     )]
     #[repr(i32)]
     pub enum Suffix {
@@ -342,8 +343,9 @@ pub mod symbol_information {
     /// Since Kind is more fine-grained than Suffix:
     /// - If two symbols have the same Kind, they should share the same Suffix.
     /// - If two symbols have different Suffixes, they should have different Kinds.
-    #[derive(serde::Serialize, serde::Deserialize)]
     #[derive(
+        serde::Serialize,
+        serde::Deserialize,
         Clone,
         Copy,
         Debug,
@@ -352,7 +354,7 @@ pub mod symbol_information {
         Hash,
         PartialOrd,
         Ord,
-        ::prost::Enumeration
+        ::prost::Enumeration,
     )]
     #[repr(i32)]
     pub enum Kind {
@@ -877,8 +879,19 @@ pub struct Diagnostic {
     #[prost(enumeration = "DiagnosticTag", repeated, tag = "5")]
     pub tags: ::prost::alloc::vec::Vec<i32>,
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum ProtocolVersion {
     UnspecifiedProtocolVersion = 0,
@@ -901,8 +914,19 @@ impl ProtocolVersion {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum TextEncoding {
     UnspecifiedTextEncoding = 0,
@@ -932,8 +956,19 @@ impl TextEncoding {
     }
 }
 /// Encoding used to interpret the 'character' value in source ranges.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum PositionEncoding {
     /// Default value. This value should not be used by new SCIP indexers
@@ -967,12 +1002,8 @@ impl PositionEncoding {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PositionEncoding::UnspecifiedPositionEncoding => {
-                "UnspecifiedPositionEncoding"
-            }
-            PositionEncoding::Utf8CodeUnitOffsetFromLineStart => {
-                "UTF8CodeUnitOffsetFromLineStart"
-            }
+            PositionEncoding::UnspecifiedPositionEncoding => "UnspecifiedPositionEncoding",
+            PositionEncoding::Utf8CodeUnitOffsetFromLineStart => "UTF8CodeUnitOffsetFromLineStart",
             PositionEncoding::Utf16CodeUnitOffsetFromLineStart => {
                 "UTF16CodeUnitOffsetFromLineStart"
             }
@@ -985,15 +1016,9 @@ impl PositionEncoding {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "UnspecifiedPositionEncoding" => Some(Self::UnspecifiedPositionEncoding),
-            "UTF8CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf8CodeUnitOffsetFromLineStart)
-            }
-            "UTF16CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf16CodeUnitOffsetFromLineStart)
-            }
-            "UTF32CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf32CodeUnitOffsetFromLineStart)
-            }
+            "UTF8CodeUnitOffsetFromLineStart" => Some(Self::Utf8CodeUnitOffsetFromLineStart),
+            "UTF16CodeUnitOffsetFromLineStart" => Some(Self::Utf16CodeUnitOffsetFromLineStart),
+            "UTF32CodeUnitOffsetFromLineStart" => Some(Self::Utf32CodeUnitOffsetFromLineStart),
             _ => None,
         }
     }
@@ -1003,8 +1028,19 @@ impl PositionEncoding {
 /// to determine if the `Import` role is set, test whether the second bit of the
 /// enum value is defined. In pseudocode, this can be implemented with the
 /// logic: `const isImportRole = (role.value & SymbolRole.Import.value) > 0`.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum SymbolRole {
     /// This case is not meant to be used; it only exists to avoid an error
@@ -1061,8 +1097,19 @@ impl SymbolRole {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum SyntaxKind {
     UnspecifiedSyntaxKind = 0,
@@ -1232,8 +1279,19 @@ impl SyntaxKind {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum Severity {
     UnspecifiedSeverity = 0,
@@ -1268,8 +1326,19 @@ impl Severity {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum DiagnosticTag {
     UnspecifiedDiagnosticTag = 0,
@@ -1304,8 +1373,19 @@ impl DiagnosticTag {
 /// multiple string representations. For example, the C++ language uses the name
 /// "CPP" in this enum and other names such as "cpp" are incompatible.
 /// Feel free to send a pull-request to add missing programming languages.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum Language {
     UnspecifiedLanguage = 0,
