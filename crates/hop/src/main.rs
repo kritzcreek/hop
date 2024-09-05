@@ -1,3 +1,4 @@
+#[allow(clippy::all)]
 mod proto;
 
 use anyhow::{bail, Context, Result};
@@ -61,7 +62,7 @@ fn main() -> Result<()> {
                     println!("{}", serde_json::to_string(&index)?);
                 }
             } else if let Some(document) = proto::read_document(&bytes) {
-                if let Some(_) = path {
+                if path.is_some() {
                     bail!("Cannot filter by --path when searching a single encoded document");
                 }
                 println!("{}", serde_json::to_string(&document)?);
