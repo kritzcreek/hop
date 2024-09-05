@@ -5,8 +5,7 @@
 /// value at a time. To permit streaming consumption of an Index payload, the
 /// `metadata` field must appear at the start of the stream and must only appear
 /// once in the stream. Other field values may appear in any order.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Index {
     /// Metadata about this index.
     #[prost(message, optional, tag = "1")]
@@ -25,8 +24,7 @@ pub struct Index {
     #[prost(message, repeated, tag = "3")]
     pub external_symbols: ::prost::alloc::vec::Vec<SymbolInformation>,
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Metadata {
     /// Which version of this protocol was used to generate this index?
     #[prost(enumeration = "ProtocolVersion", tag = "1")]
@@ -45,8 +43,7 @@ pub struct Metadata {
     #[prost(enumeration = "TextEncoding", tag = "4")]
     pub text_document_encoding: i32,
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct ToolInfo {
     /// Name of the indexer that produced this index.
     #[prost(string, tag = "1")]
@@ -59,8 +56,7 @@ pub struct ToolInfo {
     pub arguments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Document defines the metadata about a source file on disk.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Document {
     /// The string ID for the programming language this file is written in.
     /// The `Language` enum contains the names of most common programming languages.
@@ -153,8 +149,7 @@ pub struct Document {
 ///
 /// Local symbols MUST only be used for entities which are local to a Document,
 /// and cannot be accessed from outside the Document.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Symbol {
     #[prost(string, tag = "1")]
     pub scheme: ::prost::alloc::string::String,
@@ -166,8 +161,7 @@ pub struct Symbol {
 /// Unit of packaging and distribution.
 ///
 /// NOTE: This corresponds to a module in Go and JVM languages.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Package {
     #[prost(string, tag = "1")]
     pub manager: ::prost::alloc::string::String,
@@ -176,8 +170,7 @@ pub struct Package {
     #[prost(string, tag = "3")]
     pub version: ::prost::alloc::string::String,
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Descriptor {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
@@ -188,8 +181,9 @@ pub struct Descriptor {
 }
 /// Nested message and enum types in `Descriptor`.
 pub mod descriptor {
-    #[derive(serde::Serialize, serde::Deserialize)]
     #[derive(
+        serde::Serialize,
+        serde::Deserialize,
         Clone,
         Copy,
         Debug,
@@ -198,7 +192,7 @@ pub mod descriptor {
         Hash,
         PartialOrd,
         Ord,
-        ::prost::Enumeration
+        ::prost::Enumeration,
     )]
     #[repr(i32)]
     pub enum Suffix {
@@ -256,8 +250,7 @@ pub mod descriptor {
 }
 /// SymbolInformation defines metadata about a symbol, such as the symbol's
 /// docstring or what package it's defined it.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct SymbolInformation {
     /// Identifier of this symbol, which can be referenced from `Occurence.symbol`.
     /// The string must be formatted according to the grammar in `Symbol`.
@@ -334,8 +327,9 @@ pub mod symbol_information {
     /// Since Kind is more fine-grained than Suffix:
     /// - If two symbols have the same Kind, they should share the same Suffix.
     /// - If two symbols have different Suffixes, they should have different Kinds.
-    #[derive(serde::Serialize, serde::Deserialize)]
     #[derive(
+        serde::Serialize,
+        serde::Deserialize,
         Clone,
         Copy,
         Debug,
@@ -344,7 +338,7 @@ pub mod symbol_information {
         Hash,
         PartialOrd,
         Ord,
-        ::prost::Enumeration
+        ::prost::Enumeration,
     )]
     #[repr(i32)]
     pub enum Kind {
@@ -668,8 +662,7 @@ pub mod symbol_information {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Relationship {
     #[prost(string, tag = "1")]
     pub symbol: ::prost::alloc::string::String,
@@ -738,8 +731,7 @@ pub struct Relationship {
 ///
 /// If possible, indexers should try to bundle logically related information
 /// across occurrences into a single occurrence to reduce payload sizes.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Occurrence {
     /// Half-open [start, end) range of this occurrence. Must be exactly three or four
     /// elements:
@@ -847,8 +839,7 @@ pub struct Occurrence {
 }
 /// Represents a diagnostic, such as a compiler error or warning, which should be
 /// reported for a document.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, ::prost::Message)]
 pub struct Diagnostic {
     /// Should this diagnostic be reported as an error, warning, info, or hint?
     #[prost(enumeration = "Severity", tag = "1")]
@@ -866,8 +857,19 @@ pub struct Diagnostic {
     #[prost(enumeration = "DiagnosticTag", repeated, tag = "5")]
     pub tags: ::prost::alloc::vec::Vec<i32>,
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum ProtocolVersion {
     UnspecifiedProtocolVersion = 0,
@@ -890,8 +892,19 @@ impl ProtocolVersion {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum TextEncoding {
     UnspecifiedTextEncoding = 0,
@@ -921,8 +934,19 @@ impl TextEncoding {
     }
 }
 /// Encoding used to interpret the 'character' value in source ranges.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum PositionEncoding {
     /// Default value. This value should not be used by new SCIP indexers
@@ -956,12 +980,8 @@ impl PositionEncoding {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            PositionEncoding::UnspecifiedPositionEncoding => {
-                "UnspecifiedPositionEncoding"
-            }
-            PositionEncoding::Utf8CodeUnitOffsetFromLineStart => {
-                "UTF8CodeUnitOffsetFromLineStart"
-            }
+            PositionEncoding::UnspecifiedPositionEncoding => "UnspecifiedPositionEncoding",
+            PositionEncoding::Utf8CodeUnitOffsetFromLineStart => "UTF8CodeUnitOffsetFromLineStart",
             PositionEncoding::Utf16CodeUnitOffsetFromLineStart => {
                 "UTF16CodeUnitOffsetFromLineStart"
             }
@@ -974,15 +994,9 @@ impl PositionEncoding {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "UnspecifiedPositionEncoding" => Some(Self::UnspecifiedPositionEncoding),
-            "UTF8CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf8CodeUnitOffsetFromLineStart)
-            }
-            "UTF16CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf16CodeUnitOffsetFromLineStart)
-            }
-            "UTF32CodeUnitOffsetFromLineStart" => {
-                Some(Self::Utf32CodeUnitOffsetFromLineStart)
-            }
+            "UTF8CodeUnitOffsetFromLineStart" => Some(Self::Utf8CodeUnitOffsetFromLineStart),
+            "UTF16CodeUnitOffsetFromLineStart" => Some(Self::Utf16CodeUnitOffsetFromLineStart),
+            "UTF32CodeUnitOffsetFromLineStart" => Some(Self::Utf32CodeUnitOffsetFromLineStart),
             _ => None,
         }
     }
@@ -992,8 +1006,19 @@ impl PositionEncoding {
 /// to determine if the `Import` role is set, test whether the second bit of the
 /// enum value is defined. In pseudocode, this can be implemented with the
 /// logic: `const isImportRole = (role.value & SymbolRole.Import.value) > 0`.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum SymbolRole {
     /// This case is not meant to be used; it only exists to avoid an error
@@ -1050,8 +1075,19 @@ impl SymbolRole {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum SyntaxKind {
     UnspecifiedSyntaxKind = 0,
@@ -1221,8 +1257,19 @@ impl SyntaxKind {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum Severity {
     UnspecifiedSeverity = 0,
@@ -1257,8 +1304,19 @@ impl Severity {
         }
     }
 }
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum DiagnosticTag {
     UnspecifiedDiagnosticTag = 0,
@@ -1293,8 +1351,19 @@ impl DiagnosticTag {
 /// multiple string representations. For example, the C++ language uses the name
 /// "CPP" in this enum and other names such as "cpp" are incompatible.
 /// Feel free to send a pull-request to add missing programming languages.
-#[derive(serde::Serialize, serde::Deserialize)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    Clone,
+    Copy,
+    Debug,
+    PartialEq,
+    Eq,
+    Hash,
+    PartialOrd,
+    Ord,
+    ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum Language {
     UnspecifiedLanguage = 0,

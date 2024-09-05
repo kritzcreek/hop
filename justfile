@@ -2,11 +2,12 @@ default:
   just --list
 
 install:
-  cargo run --bin xtask-gen
   cargo install --path crates/hop
 
-fmt:
+build:
+  cargo run --bin xtask-gen
   cargo fmt --all
+  cargo build --all
 
 test:
   cargo test --all
