@@ -1,8 +1,6 @@
-#[allow(clippy::all)]
-mod proto;
-
 use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand};
+use hop::{read_document, read_index};
 use std::{
     fs,
     io::Read,
@@ -50,7 +48,7 @@ fn main() -> Result<()> {
     match args.command {
         Commands::Print { input, path } => {
             let bytes = read_input(input.as_deref())?;
-            if let Some(index) = proto::read_index(&bytes) {
+            if let Some(index) = read_index(&bytes) {
                 if let Some(path) = path {
                     let document = index
                         .documents
@@ -61,7 +59,7 @@ fn main() -> Result<()> {
                 } else {
                     println!("{}", serde_json::to_string(&index)?);
                 }
-            } else if let Some(document) = proto::read_document(&bytes) {
+            } else if let Some(document) = read_document(&bytes) {
                 if path.is_some() {
                     bail!("Cannot filter by --path when searching a single encoded document");
                 }
@@ -73,11 +71,11 @@ fn main() -> Result<()> {
         }
         Commands::ListFiles { input } => {
             let bytes = read_input(input.as_deref())?;
-            if let Some(index) = proto::read_index(&bytes) {
+            if let Some(index) = read_index(&bytes) {
                 let mut paths: Vec<_> = index.documents.iter().map(|d| &d.relative_path).collect();
                 paths.sort();
                 println!("{}", serde_json::to_string(&paths)?);
-            } else if let Some(document) = proto::read_document(&bytes) {
+            } else if let Some(document) = read_document(&bytes) {
                 println!("{}", serde_json::to_string(&vec![document.relative_path])?);
             } else {
                 bail!("Could not parse input as either an index or a document")
