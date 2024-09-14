@@ -1,6 +1,6 @@
 use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand};
-use hop::{read_document, read_index};
+use hop_scip::{read_document, read_index};
 use std::{
     fs,
     io::Read,

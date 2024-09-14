@@ -17,7 +17,7 @@ fn main() {
     let root = project_root();
     tonic_build::configure()
         .type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]")
-        .out_dir(root.join("crates/hop/src/proto"))
+        .out_dir(root.join("crates/hop-scip/src/proto"))
         .compile(&[root.join("proto/scip.proto")], &[root.join("proto")])
         .unwrap();
 }
