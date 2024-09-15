@@ -1,4 +1,3 @@
-#[allow(clippy::all)]
 mod proto;
 pub mod symbol;
 pub use proto::scip;
