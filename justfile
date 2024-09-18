@@ -2,7 +2,7 @@ default:
   just --list
 
 install:
-  cargo install --path crates/hop
+  cargo install --path crates/hop-scip-cli --bin hop
 
 build:
   cargo run --bin xtask-gen

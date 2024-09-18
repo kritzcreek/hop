@@ -113,7 +113,7 @@ pub struct Document {
 ///
 /// Symbol has a standardized string representation, which can be used
 /// interchangeably with `Symbol`. The syntax for Symbol is the following:
-/// ```
+///
 /// # (<x>)+ stands for one or more repetitions of <x>
 /// # (<x>)? stands for zero or one occurrence of <x>
 /// <symbol>               ::= <scheme> ' ' <package> ' ' (<descriptor>)+ | 'local ' <local-id>
@@ -139,7 +139,6 @@ pub struct Document {
 /// <escaped-identifier>   ::= '`' (<escaped-character>)+ '`', must contain at least one non-<identifier-character>
 /// <escaped-characters>   ::= any UTF-8, escape backticks with double backtick.
 /// <local-id>             ::= <simple-identifier>
-/// ```
 ///
 /// The list of descriptors for a symbol should together form a fully
 /// qualified name for the symbol. That is, it should serve as a unique
@@ -798,7 +797,7 @@ pub struct Occurrence {
     /// For definition occurrences, the enclosing range should indicate the
     /// start/end bounds of the entire definition AST node, including
     /// documentation.
-    /// ```
+    /// ```ts
     /// const n = 3
     ///        ^ range
     /// ^^^^^^^^^^^ enclosing_range
@@ -826,7 +825,7 @@ pub struct Occurrence {
     ///
     /// For reference occurrences, the enclosing range should indicate the start/end
     /// bounds of the parent expression.
-    /// ```
+    /// ```ts
     /// const a = a.b
     ///              ^ range
     ///            ^^^ enclosing_range
