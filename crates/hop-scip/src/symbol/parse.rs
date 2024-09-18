@@ -30,7 +30,9 @@ fn parse_symbol_inner(input: &str) -> PResult<'_, Symbol<'_>> {
 
 fn parse_local_symbol(input: &str) -> PResult<'_, Symbol<'_>> {
     preceded(tag("local "), parse_simple_identifier_str)
-        .map(|local_id| Symbol::Local { local_id })
+        .map(|local_id| Symbol::Local {
+            local_id: local_id.into(),
+        })
         .parse(input)
 }
 

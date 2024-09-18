@@ -6,7 +6,7 @@ mod parse;
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 pub enum Symbol<'a> {
-    Local { local_id: &'a str },
+    Local { local_id: Cow<'a, str> },
     Global(GlobalSymbol<'a>),
 }
 
